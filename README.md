@@ -29,7 +29,7 @@ light:
             value: "{{ brightness }}"
             entity_id: number.r4s5_gate_screen
 ```
-+ добавить в конфигурацию запись для интеграции Circadian Lighting:
+и добавить в конфигурацию запись для интеграции Circadian Lighting:
 ```yaml
 switch:
   - platform: circadian_lighting
