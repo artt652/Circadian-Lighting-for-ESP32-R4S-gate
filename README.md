@@ -21,7 +21,7 @@ light:
         turn_on:
           service: number.set_value
           data:
-            value: '10'
+            value: '10' # начальная яркостьэкрана при включении (0-100)
             entity_id: number.r4s5_gate_screen
         set_level:
           service: number.set_value
@@ -43,10 +43,8 @@ switch:
 ```yaml
   - platform: template
     switches:
-      r4s_gate_restart: # В явном виде кнопки нет. 
-                        # Но возможность рестарта по мктт есть.  
-                        # Для этого в топик screen нужно
-                        # записать restart, reset или reboot.
+      r4sxx_gate_restart: # В явном виде кнопки нет. Но возможность рестарта по мктт есть. 
+                          # Для этого в топик screen нужнозаписать restart, reset или reboot.
         friendly_name: Перезагрузка ESP32
         value_template: "{{ is_state('sensor.r4s5_gate_rssi', '0') }}"
         availability_template: "{{states('sensor.r4s5_gate_rssi') | int}}"
@@ -61,9 +59,10 @@ switch:
 
 1. Новый источник света, **light.r4sxx_gate_screen**, это и есть подсветка шлюза, с регулировкой яркости; 
 2. Выключатель адаптивной яркости, **switch.circadian_lighting_avtoiarkost_ekrana**, после его включения яркость экрана начинает подстравивается под время суток автоматически.
-3. Выключатель для перезагрузки ESP32 **switch.r4s_gate_restart**.
+3. Выключатель для перезагрузки ESP32 **switch.r4sxx_gate_restart**.
 
 Также можно настроить:
+
 [Автообновляемый прогноз погоды на экране](https://github.com/artt652/Weather-for-ESP32-R4S-gate)
 
 [Обсуждение в телеграм](https://t.me/ESP32_R4sGate)
