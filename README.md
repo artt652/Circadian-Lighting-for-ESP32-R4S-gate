@@ -33,7 +33,7 @@ light:
 ```yaml
 switch:
   - platform: circadian_lighting
-    #max_brightness: 20 # (1-100) значение максимальной яркости
+    max_brightness: 20 # (1-100) значение максимальной яркости
     name: Автояркость экрана
     lights_brightness:
        - light.r4sxx_gate_screen
