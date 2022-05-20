@@ -38,16 +38,16 @@ switch:
     lights_brightness:
        - light.r4sxx_gate_screen
 ```
-Кроме того, можно сюда же ещё добавить и выключатель для перезагрузки ESP32:
+кроме того, можно сюда же ещё добавить и выключатель для перезагрузки ESP32:
 
 ```yaml
   - platform: template
     switches:
       r4sxx_gate_restart: # В явном виде кнопки нет. Но возможность рестарта по мктт есть. 
-                          # Для этого в топик screen нужнозаписать restart, reset или reboot.
+                          # Для этого в топик screen нужно записать restart, reset или reboot.
         friendly_name: Перезагрузка ESP32
-        value_template: "{{ is_state('sensor.r4s5_gate_rssi', '0') }}"
-        availability_template: "{{states('sensor.r4s5_gate_rssi') | int}}"
+        value_template: "{{ is_state('sensor.r4s5_gate_rssi', '0') }}" # после перезагрузки шлюза выключатель возвращается в "off"
+        availability_template: "{{states('sensor.r4s5_gate_rssi') | int}}" # возвращает статус "unavaliable" если нет сигнала rssi
         turn_on:
           service: mqtt.publish
           data:
